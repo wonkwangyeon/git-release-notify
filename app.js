@@ -1,26 +1,35 @@
 import 'dotenv/config'
 import Parser from 'rss-parser'
+import mail from './mail/mail.js'
 
 const parser = new Parser({
 });
 
 let gitUrl = process.env.GIT_URL;
 let gitUrlList=gitUrl.split("\n")
+const today = new Date()
+const yesterday = new Date(today.setDate(today.getDate() -1))
 
+let chkMail=false
+let mailText=""
 const getLatestRelease = async(url) => {
     try {
-        console.log(url)
+
         let feed = await parser.parseURL(url+'.atom');
 
-        //console.log(feed);
+        const pubDate = new Date(feed.items[0].pubDate)
 
-        feed.items.forEach(item => {
-            console.log("----------------------------------------------------------")
-            console.log(item.title)
-            console.log(item.pubDate)
-            console.log(item.link)
-        });
-
+        if (yesterday.getFullYear() == pubDate.getFullYear && yesterday.getMonth() == pubDate.getMonth()
+            && yesterday.getDate() == pubDate.getMonth()){            
+            console.log(feed.items[0].title)
+            console.log(feed.items[0].pubDate)
+            console.log(feed.items[0].link)
+            mailText += "===================== Latest Release =====================\n"
+            mailText += "name: " + feed.items[0].title+"\n"
+            mailText += "date: " + feed.items[0].pubDate+"\n"
+            mailText += "link: " + feed.items[0].link+"\n"
+            chkMail=true
+        }
 
     } catch (e) {
         console.log(e)
@@ -29,4 +38,8 @@ const getLatestRelease = async(url) => {
 
 for (let list of gitUrlList) {
     await getLatestRelease(list);
+}
+
+if (chkMail) {
+    mail.sendMail(mailText)
 }
