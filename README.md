@@ -29,7 +29,7 @@ SMTP_USER="test@test.com"
 
 SMTP_PASSWORD=""
 
-RECEIVER="test@test.com"
+RECEIVER="test@test.com,testuser2@test.com"
 
 ## Production
 > Github actions repository secrets 설정
