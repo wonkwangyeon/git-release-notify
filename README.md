@@ -52,7 +52,7 @@ SMTP_USER="tes@test.com"
 
 SMTP_PASSWORD=""
 
-RECEIVER="test@test.com"
+RECEIVER="test@test.com,testuser2@test.com"
 
 SLACK_ENABLED=true
 

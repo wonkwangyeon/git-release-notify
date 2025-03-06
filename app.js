@@ -22,8 +22,8 @@ const getLatestRelease = async (url) => {
 
         const pubDate = new Date(feed.items[0].pubDate)
 
-        if (yesterday.getFullYear() == pubDate.getFullYear && yesterday.getMonth() == pubDate.getMonth()
-            && yesterday.getDate() == pubDate.getMonth()) {
+       // if (yesterday.getFullYear() == pubDate.getFullYear && yesterday.getMonth() == pubDate.getMonth()
+          //  && yesterday.getDate() == pubDate.getMonth()) {
             console.log(feed.items[0].title)
             console.log(feed.items[0].pubDate)
             console.log(feed.items[0].link)
@@ -32,7 +32,7 @@ const getLatestRelease = async (url) => {
             mailText += "date: " + feed.items[0].pubDate + "\n"
             mailText += "link: " + feed.items[0].link + "\n"
             chkSend = true
-        }
+        //}
         console.log(mailText);
     } catch (e) {
         console.log(e)
