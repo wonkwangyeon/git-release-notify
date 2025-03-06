@@ -9,7 +9,9 @@ let smtpPassword = process.env.SMTP_PASSWORD;
 let receiver = process.env.RECEIVER;
 
 
-const sendMail = async(mailText) => {
+const sendMail = async (mailText) => {
+    smtpTls=(smtpTls?.toLowerCase?.() === 'true');
+    
     const transporter = nodemailer.createTransport({
         host: smtpServer,
         port: smtpPort,
