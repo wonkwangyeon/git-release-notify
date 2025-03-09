@@ -32,13 +32,13 @@ jobs:
     - name: NPM RUN
       run: npm run start
       env:
-        GIT_URL: ${{ secrets.GIT_URL }}
-        MAIL_ENABLED: ${{ secrets.MAIL_ENABLED }}
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        SMTP_PORT: ${{ secrets.SMTP_PORT }}
-        SMTP_TLS: ${{ secrets.SMTP_TLS }}
+        GIT_URL: ${{ env.GIT_URL }}
+        MAIL_ENABLED: ${{ env.MAIL_ENABLED }}
+        SMTP_SERVER: ${{ env.SMTP_SERVER }}
+        SMTP_PORT: ${{ env.SMTP_PORT }}
+        SMTP_TLS: ${{ env.SMTP_TLS }}
         SMTP_USER: ${{ secrets.SMTP_USER }}
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        RECEIVER: ${{ secrets.RECEIVER }}
-        SLACK_ENABLED: ${{ secrets.SLACK_ENABLED }}
+        RECEIVER: ${{ env.RECEIVER }}
+        SLACK_ENABLED: ${{ env.SLACK_ENABLED }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
