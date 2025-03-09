@@ -13,8 +13,8 @@ Github repository latest release 알림
 
 # How to use
 - 개발할 경우 root 경로에 _env 파일을 .env로 수정 후 아래 환경변수 세팅
-- Github Actions로 사용시 repository secrets 설정
-- CronJob 일 경우 DockerBuild 하여 사용
+- Github Actions로 사용시 repository secrets 및 env 설정
+- k8s CronJob 일 경우 DockerBuild 하여 yaml 생성 후 사용 
 
 | Option | Description | Required |
 |:-|:-|:-|
