@@ -19,7 +19,7 @@ const getLatestRelease = async (url) => {
     try {
 
         let feed = await parser.parseURL(url + '.atom');
-
+        console.log("test")
         const pubDate = new Date(feed.items[0].pubDate)
 
         if (yesterday.getFullYear() == pubDate.getFullYear && yesterday.getMonth() == pubDate.getMonth()
