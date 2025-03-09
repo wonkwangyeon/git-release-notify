@@ -10,50 +10,33 @@ Github repository latest release 알림
 전송시간은 github actions로 수정 가능
 
 # How to use
-## Develop
-> root 경로에 _env 파일을 .env로 수정 후 아래 환경변수 세팅
+- 개발할 경우 root 경로에 _env 파일을 .env로 수정 후 아래 환경변수 세팅
+- Github Actions로 사용시 repository secrets 설정
+- CronJob 일 경우 DockerBuild 하여 사용
 
-**GIT_URL은 반드시 release로 끝나는 url이여야 함. 여러Repo 입력시 아래와 같이 입력.**
-
+| Option | Description | Required |
+|:-|:-|:-|
+| MAIL_ENABLED | 메일 전송 활성화/비활성화 | true/false |
+| SMTP_SERVER | SMTP 서버 | smtp.test.com |
+| SMTP_PORT | STMP 포트 | 123 |
+| SMTP_TLS | SMTP TLS 설정 | false |
+| SMTP_USER | STMP 사용자 및 송신자 | test_user |
+| SMTP_PASSWORD | SMTP 비밀번호 | 1234 |
+| RECEIVER | 수신자 | test1@test.com |
+| SLACK_ENABLED | 슬랙 전송 활성화/비활성화 | true/false |
+| SLACK_WEBHOOK_URL | 슬랙 URL | test.com |
+```
+# GIT_URL은 반드시 release로 끝나는 url이여야 함. 여러Repo 입력시 아래와 같이 입력.
 GIT_URL="https://github.com/wonkwangyeon/git-release-notify/releases
-
 https://github.com/wonkwangyeon/Run-Multiple-Program/releases"
-
-SMTP_SERVER="smtp.test.com"
-
-SMTP_PORT=123
-
-SMTP_TLS=false
-
-SMTP_USER="test@test.com"
-
-SMTP_PASSWORD=""
-
-RECEIVER="test@test.com,testuser2@test.com"
-
-## Production
-> Github actions repository secrets 설정
-
-**GIT_URL은 반드시 release로 끝나는 url이여야 함. 여러Repo 입력시 아래와 같이 입력.**
-
-GIT_URL="https://github.com/wonkwangyeon/git-release-notify/releases
-
-https://github.com/wonkwangyeon/Run-Multiple-Program/releases"
-
 MAIL_ENABLED=true
-
 SMTP_SERVER="smtp.test.com"
-
 SMTP_PORT=123
-
 SMTP_TLS=false
-
-SMTP_USER="tes@test.com"
-
+SMTP_USER="test@test.com"
 SMTP_PASSWORD=""
-
+# Receiver가 한명일 경우 test@test.com 하나만 입력. 여러명일 경우 ','로 구분해서 나열
 RECEIVER="test@test.com,testuser2@test.com"
-
-SLACK_ENABLED=true
-
+SLACK_ENABLED=false
 SLACK_WEBHOOK_URL=""
+```
