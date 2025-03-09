@@ -20,6 +20,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Enable Debug Logs
+      run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
     - name: git checkout
       uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
