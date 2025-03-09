@@ -9,7 +9,6 @@ const parser = new Parser({
 let gitUrl = process.env.GIT_URL
 let mailEnabled = process.env.MAIL_ENABLED
 let slackEnabled = process.env.SLACK_ENABLED
-console.log("====" + gitUrl)
 let gitUrlList = gitUrl.split("\n")
 const today = new Date()
 const yesterday = new Date(today.setDate(today.getDate() - 1))
@@ -36,7 +35,6 @@ const getLatestRelease = async (url) => {
     }
 }
 for (let list of gitUrlList) {
-    console.log("test: " +list)
     await getLatestRelease(list);
 }
 
