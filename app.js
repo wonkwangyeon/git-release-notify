@@ -10,7 +10,6 @@ const parser = new Parser({
 let gitUrl = process.env.GIT_URL
 let mailEnabled = process.env.MAIL_ENABLED
 let slackEnabled = process.env.SLACK_ENABLED
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 let gitUrlList = gitUrl.split("\n")
 const today = new Date()
 const yesterday = new Date(today.setDate(today.getDate() - 1))
