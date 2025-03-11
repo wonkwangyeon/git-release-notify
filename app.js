@@ -35,8 +35,10 @@ const getLatestRelease = async (url) => {
         console.log(e)
     }
 }
+console.log(gitUrl)
 for (let list of gitUrlList) {
-    await getLatestRelease(list);
+    console.log(list.length)
+    //await getLatestRelease(list);
 }
 
 mailEnabled = (mailEnabled?.toLowerCase?.() === 'true');
