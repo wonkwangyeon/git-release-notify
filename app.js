@@ -37,7 +37,7 @@ const getLatestRelease = async (url) => {
 }
 console.log(gitUrl)
 for (let list of gitUrlList) {
-
+    list=list.trim()
     console.log(list.length)
     //await getLatestRelease(list);
 }
