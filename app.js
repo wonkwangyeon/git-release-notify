@@ -4,7 +4,6 @@ import mail from './mail/mail.js'
 import slack from './slack/slack.js'
 
 const parser = new Parser({
-    headers: { 'User-Agent': 'Mozilla/5.0' }
 });
 
 let gitUrl = process.env.GIT_URL
@@ -18,7 +17,7 @@ let chkSend = false
 let mailText = ""
 const getLatestRelease = async (url) => {
     try {
-        console.log("url : " + url)
+
         let feed = await parser.parseURL(url + '.atom');
 
         const pubDate = new Date(feed.items[0].pubDate)
@@ -35,11 +34,9 @@ const getLatestRelease = async (url) => {
         console.log(e)
     }
 }
-console.log(gitUrl)
-for (let list of gitUrlList) {
-    list=list.trim()
-    console.log(list.length)
-    //await getLatestRelease(list);
+
+for (let list of gitUrlList) {    
+    await getLatestRelease(list.trim());
 }
 
 mailEnabled = (mailEnabled?.toLowerCase?.() === 'true');
