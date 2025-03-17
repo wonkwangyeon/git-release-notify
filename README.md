@@ -18,6 +18,7 @@ Github repository latest release 알림
 
 | Option | Description | Required |
 |:-|:-|:-|
+| GIT_URL | 알림받을 GIT_URL | https://github.com/~~~/release |
 | MAIL_ENABLED | 메일 전송 활성화/비활성화 | true/false |
 | SMTP_SERVER | SMTP 서버 | smtp.test.com |
 | SMTP_PORT | STMP 포트 | 123 |
