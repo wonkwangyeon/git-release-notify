@@ -16,10 +16,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [23.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Enable Debug Logs
+      run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
     - name: git checkout
       uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -32,13 +34,14 @@ jobs:
     - name: NPM RUN
       run: npm run start
       env:
-        GIT_URL: ${{ secrets.GIT_URL }}
-        MAIL_ENABLED: ${{ secrets.MAIL_ENABLED }}
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        SMTP_PORT: ${{ secrets.SMTP_PORT }}
-        SMTP_TLS: ${{ secrets.SMTP_TLS }}
+        ACTIONS_STEP_DEBUG: true
+        GIT_URL: ${{ vars.GIT_URL }}
+        MAIL_ENABLED: ${{ vars.MAIL_ENABLED }}
+        SMTP_SERVER: ${{ vars.SMTP_SERVER }}
+        SMTP_PORT: ${{ vars.SMTP_PORT }}
+        SMTP_TLS: ${{ vars.SMTP_TLS }}
         SMTP_USER: ${{ secrets.SMTP_USER }}
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        RECEIVER: ${{ secrets.RECEIVER }}
-        SLACK_ENABLED: ${{ secrets.SLACK_ENABLED }}
+        RECEIVER: ${{ vars.RECEIVER }}
+        SLACK_ENABLED: ${{ vars.SLACK_ENABLED }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
