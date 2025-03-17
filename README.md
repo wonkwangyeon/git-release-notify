@@ -43,3 +43,50 @@ RECEIVER="test@test.com,testuser2@test.com"
 SLACK_ENABLED=false
 SLACK_WEBHOOK_URL=""
 ```
+
+
+# k8s CronJob
+Using container build
+```
+docker build -t git-release-notify:latest .
+```
+
+CronJob yaml
+```
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: git-release-notify
+spec:
+  schedule: "0 9 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: git-release-notify
+            image: git-release-notify:latest
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: GIT_URL
+              value: ""
+            - name: MAIL_ENABLED
+              value: ""
+            - name: SMTP_SERVER
+              value: ""
+            - name: SMTP_PORT
+              value: ""
+            - name: SMTP_TLS
+              value: ""
+            - name: SMTP_USER
+              value: ""
+            - name: SMTP_PASSWORD
+              value: ""
+            - name: RECEIVER
+              value: ""
+            - name: SLACK_ENABLED
+              value: ""
+            - name: SLACK_WEBHOOK_URL
+              value: ""
+          restartPolicy: OnFailure
+```

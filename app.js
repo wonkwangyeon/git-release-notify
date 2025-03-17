@@ -17,7 +17,7 @@ let chkSend = false
 let mailText = ""
 const getLatestRelease = async (url) => {
     try {
-
+        console.log(url)
         let feed = await parser.parseURL(url + '.atom');
 
         const pubDate = new Date(feed.items[0].pubDate)
